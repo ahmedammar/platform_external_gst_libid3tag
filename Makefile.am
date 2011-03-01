@@ -121,3 +121,19 @@ again:
 	$(MAKE)
 
 .PHONY: again
+
+libid3tag-Android.mk: Makefile.am id3tag.h
+	androgenizer \
+	-:PROJECT libid3tag -:SHARED libid3tag \
+	 -:TAGS optional \
+         -:REL_TOP $(top_srcdir) -:ABS_TOP $(abs_top_srcdir) \
+	 -:SOURCES $(libid3tag_la_SOURCES) \
+	 	   $(EXTRA_libid3tag_la_SOURCES) \
+	 -:CFLAGS $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
+		   -Iexternal/zlib \
+	 -:LDFLAGS $(libid3tag_la_LDFLAGS) \
+	           $(libid3tag_la_LIBADD) \
+		   -lz \
+	 -:HEADERS $(include_HEADERS) \
+	 -:PASSTHROUGH LOCAL_ARM_MODE:=arm \
+	> $@
