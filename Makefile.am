@@ -133,6 +133,7 @@ libid3tag-Android.mk: Makefile.am id3tag.h
 		   -Iexternal/zlib \
 	 -:LDFLAGS $(libid3tag_la_LDFLAGS) \
 	           $(libid3tag_la_LIBADD) \
+		   -lz \
 	 -:HEADERS $(include_HEADERS) \
 	 -:PASSTHROUGH LOCAL_ARM_MODE:=arm \
 	 		LOCAL_LDLIBS:=-lz \
