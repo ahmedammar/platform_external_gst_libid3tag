@@ -11,7 +11,7 @@ ID3TAG_BUILT_SOURCES := 		\
 ID3TAG_BUILT_SOURCES := $(patsubst %, $(abspath $(id3tag_TOP))/%, $(ID3TAG_BUILT_SOURCES))
 
 .PHONY: id3tag-configure
-id3tag-configure-real:
+libid3tag-configure:
 	cd $(id3tag_TOP) ; \
 	touch NEWS AUTHORS ChangeLog ; \
 	autoreconf -i && \
@@ -30,8 +30,6 @@ id3tag-configure-real:
 		make -C $$(dirname $$file) $$(basename $$file) ; \
 	done
 
-id3tag-configure: id3tag-configure-real
-
-CONFIGURE_TARGETS += id3tag-configure
+CONFIGURE_TARGETS += libid3tag-configure
 
 -include $(id3tag_TOP)/libid3tag-Android.mk
