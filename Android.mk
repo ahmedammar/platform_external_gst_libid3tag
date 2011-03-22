@@ -10,8 +10,14 @@ ID3TAG_BUILT_SOURCES := 		\
 
 ID3TAG_BUILT_SOURCES := $(patsubst %, $(abspath $(id3tag_TOP))/%, $(ID3TAG_BUILT_SOURCES))
 
-.PHONY: id3tag-configure
-libid3tag-configure:
+ifeq ($(NDK_BUILD),true)
+LIB := $(SYSROOT)/usr/lib
+else
+LIB := $(TARGET_OUT_SHARED_LIBRARIES)
+endif
+
+.PHONY: libid3tag-configure
+libid3tag-configure: $(TARGET_CRTBEGIN_DYNAMIC_O) $(TARGET_CRTEND_O) $(LIB)/libc.so $(LIB)/libz.so
 	cd $(id3tag_TOP) ; \
 	touch NEWS AUTHORS ChangeLog ; \
 	autoreconf -i && \
