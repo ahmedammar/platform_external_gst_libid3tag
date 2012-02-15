@@ -125,7 +125,7 @@ again:
 libid3tag-Android.mk: Makefile.am id3tag.h
 	androgenizer \
 	-:PROJECT libid3tag -:SHARED libid3tag \
-	 -:TAGS user eng debug \
+	 -:TAGS optional eng debug \
          -:REL_TOP $(top_srcdir) -:ABS_TOP $(abs_top_srcdir) \
 	 -:SOURCES $(libid3tag_la_SOURCES) \
 	 	   $(EXTRA_libid3tag_la_SOURCES) \
